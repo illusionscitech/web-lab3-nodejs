@@ -46,7 +46,12 @@
 
 const querystring = require('querystring')
 const handleBlogRoute = require('./src/routes/blog')
+const express = require('express');
+const app = express();
  
+// 使用 JSON 解析器中间件
+app.use(express.json());
+
 //处理post数据
 const getPostData = (req) => {
         const promise = new Promise((resolve, reject) => {
@@ -93,10 +98,17 @@ const serverHandler = (req, res) => {
                 //路由返回数据结果(将请求和响应传入)
             const blogData = handleBlogRoute(req, res)
             if (blogData) {
+                // res.json(blogData);
                 //如果拿到了，就结束请求，返回一个响应
-                res.end(
-                    JSON.stringify(blogData)
-                );
+                // res.end(
+                //     JSON.stringify(blogData)
+                // );
+                // blogData.then(blogData => {
+                //     //如果拿到了，就结束请求，返回一个响应
+                //     res.end(
+                //         JSON.stringify(blogData)
+                //     );
+                // })
                 //响应之后，下面的代码不再执行，所以return一下
                 return;
             }

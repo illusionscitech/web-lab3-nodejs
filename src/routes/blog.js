@@ -2,6 +2,9 @@
 const querystring = require('querystring')
 const getList = require('../controller/blog')
 const Model = require('../model/responseModel')
+const execSQL = require('../db/nosql')
+
+
 
 //处理博客相关的路由,定义处理路由的逻辑
 const handleBlogRoute = (req, res) => {
@@ -20,6 +23,11 @@ const handleBlogRoute = (req, res) => {
     
     if (method === 'GET' && req.path === '/api/blog/list') {
  
+        
+        // const sql = {}
+        // execSQL.execSQL(sql).then(result => {
+        //     console.log(result);
+        // })
         const author = req.query.author || '';
         const keyword = req.query.keyword || '';
         const listData = getList.getList(author, keyword); //根据参数获取数据
@@ -41,7 +49,7 @@ const handleBlogRoute = (req, res) => {
     if (method === 'POST' && path === '/api/blog/update') {
         const updatedBlogData = updatedBlog(blogData)
         if (updatedBlogData) {
-            return new SuccessModel('更新博客成功')
+            return new Model.SuccessModel('更新博客成功')
         }
     }
     if (method === 'POST' && path === '/api/blog/delete') {

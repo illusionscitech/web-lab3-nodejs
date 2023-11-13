@@ -49,7 +49,7 @@ try {
         console.log(result);
         
         // add a linebreak
-        console.log();
+        // console.log();
     } catch (err) {
         console.error(`Something went wrong trying to find the documents: ${err}\n`);
     }

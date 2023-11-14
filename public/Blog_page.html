@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Page</title>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <h1>Blog Page</h1>
+
+    <div id="blogList"></div>
+
+    <script>
+        // 使用 fetch 或其他方式从后端获取数据
+        fetch('../api/blog/list')
+            .then(response => response.json())
+            .then(data => {
+                // 将数据展示在页面上
+                const blogListContainer = document.getElementById('blogList');
+                blogListContainer.innerHTML = JSON.stringify(data, null, 2);
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    </script>
+</body>
+</html>

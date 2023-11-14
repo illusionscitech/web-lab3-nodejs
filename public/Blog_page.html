@@ -14,15 +14,49 @@
     <div id="blogList"></div>
 
     <script>
-        // 使用 fetch 或其他方式从后端获取数据
         fetch('../api/blog/list')
             .then(response => response.json())
             .then(data => {
                 // 将数据展示在页面上
+                // const blogListContainer1 = document.getElementById('blogList');
+                // blogListContainer1.innerHTML = JSON.stringify(data, null, 2);
+
                 const blogListContainer = document.getElementById('blogList');
-                blogListContainer.innerHTML = JSON.stringify(data, null, 2);
+                
+                // Parsing the JSON string inside the "message" property
+                const blogData = JSON.parse(data.message);
+
+                // Loop through each blog entry and display selected fields
+                blogData.forEach(blog => {
+                    const blogEntry = document.createElement('div');
+                    blogEntry.classList.add('blog-entry');
+
+                    const titleElement = document.createElement('h2');
+                    titleElement.textContent = blog.title;
+
+                    const authorElement = document.createElement('p');
+                    authorElement.textContent = 'Author: ' + blog.author;
+
+                    const contentElement = document.createElement('p');
+                    contentElement.textContent = blog.content;
+
+                    blogEntry.appendChild(titleElement);
+                    blogEntry.appendChild(authorElement);
+                    blogEntry.appendChild(contentElement);
+
+                    blogListContainer.appendChild(blogEntry);
+                });
             })
             .catch(error => console.error('Error fetching data:', error));
+        // 使用 fetch 或其他方式从后端获取数据
+        // fetch('../api/blog/list')
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         // 将数据展示在页面上
+        //         const blogListContainer = document.getElementById('blogList');
+        //         blogListContainer.innerHTML = JSON.stringify(data, null, 2);
+        //     })
+        //     .catch(error => console.error('Error fetching data:', error));
     </script>
 </body>
 </html>

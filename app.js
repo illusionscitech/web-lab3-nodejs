@@ -55,35 +55,6 @@ const serverHandler = async (req, res) => {
             return;
         }
 
-                // if (blogDataPromise instanceof Promise) {
-                //     blogDataPromise.then(blogData => {
-                //         res.end(JSON.stringify(blogData));
-                //     });
-                //     return;
-                // }else{
-                //     // res.end(
-                //     //     JSON.stringify(blogDataPromise)
-                //     // );
-                // }
-
-                // const blogData = handleBlogRoute(req, res)
-                // if (blogData) {
-                //     console.log(blogData);
-                //     // res.json(blogData);
-                //     // 如果拿到了，就结束请求，返回一个响应
-                //     res.end(
-                //         JSON.stringify(blogData)
-                //     );
-                    // blogData.then(blogData => {
-                    //     //如果拿到了，就结束请求，返回一个响应
-                    //     res.end(
-                    //         JSON.stringify(blogData)
-                    //     );
-                    // })
-                    //响应之后，下面的代码不再执行，所以return一下
-                //     return;
-                // }
-                //如果不是上面的路由，就会返回下面的结果
         res.writeHead(404, { 'Content-Type': 'text/plain' }); //无格式正文
         res.write('404 Not Found');
         res.end(); //终止响应

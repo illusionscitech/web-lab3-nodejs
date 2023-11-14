@@ -46,7 +46,8 @@ try {
     try {
         const cursor = await collection.find(findQuery);
         const result= await cursor.toArray();
-        console.log(result);
+        const jsonData = JSON.stringify(result, null, 2);
+        console.log(jsonData);
         
         // add a linebreak
         // console.log();

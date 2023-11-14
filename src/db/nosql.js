@@ -24,10 +24,24 @@ try {
         
         const cursor = await collection.find(findQuery);
         const result= await cursor.toArray();
-        const promise = new Promise((resolve, reject) => {
-            resolve(result)
-        })
-        console.log(result);
+        const jsonData = JSON.stringify(result, null, 2);
+        return jsonData
+        // return jsonData
+        // const promise = new Promise((resolve, reject) => {
+        //     collection.find(sql).toArray((err, result) => {
+        //         if (err) {
+        //             reject(err)
+        //             return;
+        //         }
+        //         // const result1= result.toArray();
+        //         const jsonData = JSON.stringify(result, null, 2);
+        //         console.log(jsonData);
+        //         resolve(jsonData)
+        //     })
+        // })
+        // return promise;
+        // console.log(jsonData);//返回JSON内容
+        
         
         // add a linebreak
         // console.log();

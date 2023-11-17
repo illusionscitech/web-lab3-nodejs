@@ -25,48 +25,16 @@
             font-weight: bold; /* 加粗字体 */
             text-transform: uppercase; /* 将文本转换为大写 */
         }
-
-        .blog-entry {
-            border: 2px solid #262626;
-            margin-bottom: 20px;
-            padding: 10px;
-        }
-
-        h2 {
-            color: #007BFF;
-            margin-bottom: 10px;
-        }
-
-        p {
-            margin: 10px 0;
-        }
-
-        /* New styles for individual elements within a blog entry */
-        .title {
-            font-size: 1.2em;
-            font-weight: bold;
-        }
-
-        .author {
-            color: #555;
-        }
-
-        .content {
-            line-height: 1.5;
-        }
-
-
     </style>
-
-
 </head>
 <body>
-    <h1>Blog sharing</h1>
-
+    <!-- <h1>{{title}}</h1>
+    <p>作者: {{author}}</p>
+    <div>{{content}}</div> -->
     <div id="blogList"></div>
 
     <script>
-        fetch('../api/blog/list')
+        fetch('../api/blog/list?author=行者')
             .then(response => response.json())
             .then(data => {
                 // 将数据展示在页面上
@@ -89,13 +57,13 @@
                     linkElement.style.textDecoration = 'none'; // 可选：移除链接的下划线样式
 
 
-                    const titleElement = document.createElement('h2');
+                    const titleElement = document.createElement('h1');
                     titleElement.textContent = blog.title;
 
                     const authorElement = document.createElement('p');
                     authorElement.textContent = 'Author: ' + blog.author;
 
-                    const contentElement = document.createElement('p');
+                    const contentElement = document.createElement('div');
                     contentElement.textContent = blog.content;
 
                     // 将标题、作者和内容添加到链接元素中

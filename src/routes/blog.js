@@ -6,10 +6,11 @@ const Model = require('../model/responseModel')
 
 
 
+
 //处理博客相关的路由,定义处理路由的逻辑
 const handleBlogRoute = async(req, res) => {
-    const id = req.query.id
-    const blogData = req.body
+    // const id = req.query.id
+    // const blogData = req.body
     const method = req.method;
     const url = req.url;
     const path = url.split('?')[0] //问号分割取前半段
@@ -23,14 +24,12 @@ const handleBlogRoute = async(req, res) => {
     
     if (method === 'GET' && req.path === '/api/blog/list') {
  
-        
-        // const sql = {}
-        // execSQL.execSQL(sql).then(result => {
-        //     console.log(result);
-        // })
+        const id1 = req.query.id || '';
+        // console.log(id1);
         const author = req.query.author || '';
+        const title = req.query.title || '';
         const keyword = req.query.keyword || '';
-        const listData = await getList.getList(author, keyword); //根据参数获取数据
+        const listData = await getList.getList(id1,author,title, keyword); //根据参数获取数据
         // console.log(listData);
         return new Model.SuccessModel(listData)
             // return {

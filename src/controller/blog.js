@@ -2,7 +2,7 @@ const execSQL = require('../db/nosql')
 //博客相关的方法
 // async function getList(author, keyword){
     
-const getList = async (author, keyword) => {
+const getList = async (id1, author, title, keyword) => {
     //从数据库里面拿数据(根据用户以及关键字)
       //由于我们要做拼接，改成let
     //   let sql = `select * from blogs where`
@@ -13,12 +13,21 @@ const getList = async (author, keyword) => {
     //       sql += `and title like '%${keyword}%' ` //模糊查询
     //   }
     let findQuery = {};
+    if (id1) {
+      const str = id1;
+      const num = parseInt(str);
+      findQuery.id = num;
+    }
+    if (title) {
+      findQuery.title = title;
+    }
     if (author) {
     findQuery.author = author;
     }
     if (keyword) {
-    findQuery.title = { $regex: `.*${keyword}.*`, $options: 'i' }; // 模糊查询，不区分大小写
+    findQuery.content = keyword; // 模糊查询，不区分大小写
     }
+    // console.log(findQuery);
     // const jsonData = await execSQL.execSQL(findQuery);
     const jsonData = await execSQL.execSQL(findQuery);
     // console.log(jsonData);

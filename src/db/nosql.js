@@ -29,25 +29,7 @@ try {
         const result= await cursor.toArray();
         const jsonData = JSON.stringify(result, null, 2);
         return jsonData
-        // return jsonData
-        // const promise = new Promise((resolve, reject) => {
-        //     collection.find(sql).toArray((err, result) => {
-        //         if (err) {
-        //             reject(err)
-        //             return;
-        //         }
-        //         // const result1= result.toArray();
-        //         const jsonData = JSON.stringify(result, null, 2);
-        //         console.log(jsonData);
-        //         resolve(jsonData)
-        //     })
-        // })
-        // return promise;
-        // console.log(jsonData);//返回JSON内容
         
-        
-        // add a linebreak
-        // console.log();
     } catch (err) {
         console.error(`Something went wrong trying to find the documents: ${err}\n`);
     }

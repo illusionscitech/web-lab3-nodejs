@@ -30,7 +30,7 @@ const handleBlogRoute = async(req, res) => {
         const title = req.query.title || '';
         const keyword = req.query.keyword || '';
         const listData = await getList.getList(id1,author,title, keyword); //根据参数获取数据
-        console.log(listData);
+        // console.log(listData);
         return new Model.SuccessModel(listData)
             // return {
             //     message: '获取博客列表的接口'

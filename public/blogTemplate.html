@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Sharing</title>
+    <title>Совместное использование блога</title>
     <style>
         /* styles.css */
 
@@ -24,10 +24,13 @@
             font-family: 'Arial', sans-serif; /* 设置字体 */
             font-weight: bold; /* 加粗字体 */
             text-transform: uppercase; /* 将文本转换为大写 */
+            text-align: center; /* 使文字居中 */
         }
     </style>
 </head>
 <body>
+    <!-- 添加返回首页的链接 -->
+    <a href="/" style="text-decoration: none; color: blue; font-size: 15px;">Вернуться на главную страницу(首页)</a>
     <!-- <h1>{{title}}</h1>
     <p>作者: {{author}}</p>
     <div>{{content}}</div> -->
@@ -100,6 +103,9 @@
                     const titleElement = document.createElement('h1');
                     titleElement.textContent = blog.title;
 
+                    const idElement = document.createElement('p');
+                    idElement.textContent = 'ID: ' + blog.id;
+
                     const authorElement = document.createElement('p');
                     authorElement.textContent = 'Author: ' + blog.author;
 
@@ -108,6 +114,7 @@
 
                     // 将标题、作者和内容添加到链接元素中
                     linkElement.appendChild(titleElement);
+                    linkElement.appendChild(idElement);
                     linkElement.appendChild(authorElement);
                     linkElement.appendChild(contentElement);
 

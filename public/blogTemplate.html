@@ -34,8 +34,48 @@
     <div id="blogList"></div>
 
     <script>
-        fetch('../api/blog/list?author=行者')
-            .then(response => response.json())
+        document.addEventListener('DOMContentLoaded', function() {
+        // 提取网页网址
+        var currentUrl = window.location.href;
+        // 解析网址的路径部分
+        var urlParts = new URL(currentUrl).pathname.split('/');
+        console.log(urlParts);
+        var urlParts1=urlParts[2].split('_');
+        console.log(urlParts1);
+
+        // 检查URL中是否包含'title'参数
+        if(urlParts1.includes('title')){
+            // const title_name = currentUrl.split('/')[5];
+            console.log(urlParts1[1]); 
+            var decodedStr = decodeURIComponent(urlParts1[1]);
+            console.log(decodedStr); // 输出原始汉字字符串
+            var apiUrl = '../api/blog/list?title=' + decodedStr;
+        }else if(urlParts1.includes('author')){
+            // const author_name = currentUrl.split('/')[5];
+            var decodedStr = decodeURIComponent(urlParts1[1]);
+            console.log(decodedStr); 
+            var apiUrl = '../api/blog/list?author=' +decodedStr ;
+            // var apiUrl = encodeURIComponent(apiUrl);
+
+        }else{
+            
+            console.log(currentUrl);
+            const blogId = currentUrl.split('/')[4];
+            console.log(blogId);
+
+            // 构造API URL
+            var apiUrl = '../api/blog/list?id=' + encodeURIComponent(blogId);
+        }
+        
+        console.log(apiUrl);
+
+        fetch(apiUrl)
+            .then(response => {// 检查HTTP响应状态
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
             .then(data => {
                 // 将数据展示在页面上
                 // const blogListContainer1 = document.getElementById('blogList');
@@ -81,6 +121,7 @@
                 });
             })
             .catch(error => console.error('Error fetching data:', error));
+        });
         // 使用 fetch 或其他方式从后端获取数据
         // fetch('../api/blog/list')
         //     .then(response => response.json())

@@ -9,9 +9,14 @@
         /* styles.css */
 
         body {
+            display: flex;
             background:linear-gradient(to bottom right, #2bc0e4, #eaecc6); /* 这里可以使用任何颜色代码 */
             font-family: Arial, sans-serif;
             margin: 20px;
+        }
+        .left-column, .right-column {
+            
+            padding: 10px; /* 新增：内边距 */
         }
 
         h1 {
@@ -55,16 +60,46 @@
             line-height: 1.5;
         }
 
+        /* 新增样式 */
+        .left-column {
+            width: 20%; /* 左栏宽度，您可以根据需要调整 */
+            overflow-y: auto; /* 如果内容很多，允许滚动 */
+            border-right: 2px solid #262626; /* 左栏的右边界 */
+        }
+
+        .right-column {
+            /* ... */
+            width: 80%; /* 右栏宽度，您可以根据需要调整 */
+            margin-left: 20px; /* 右栏的左边距 */
+        }
+
+        /* 新增左栏中的链接样式 */
+        .blog-link {
+            display: block;
+            margin: 5px 0;
+            color: #007BFF;
+            text-decoration: none; /* 移除下划线 */
+        }
+
+        .blog-link:hover {
+            text-decoration: underline; /* 鼠标悬停时添加下划线 */
+        }
+
 
     </style>
 
 
 </head>
 <body>
-    <h1>Blog sharing</h1>
+    <div class="left-column">
+        <div id="blogTitles"></div>
+        <!-- 左栏内容，比如侧边导航或其他信息 -->
+    </div>
 
-    <div id="blogList"></div>
-
+    <div class="right-column">
+        <h1>Blog sharing</h1>
+        <div id="blogList"></div>
+    </div>
     <script>
         fetch('../api/blog/list')
             .then(response => response.json())
@@ -72,7 +107,7 @@
                 // 将数据展示在页面上
                 // const blogListContainer1 = document.getElementById('blogList');
                 // blogListContainer1.innerHTML = JSON.stringify(data, null, 2);
-
+                const blogTitlesContainer = document.getElementById('blogTitles');
                 const blogListContainer = document.getElementById('blogList');
                 
                 // Parsing the JSON string inside the "message" property
@@ -83,35 +118,76 @@
                     const blogEntry = document.createElement('div');
                     blogEntry.classList.add('blog-entry');
 
-                    // 创建一个链接元素
-                    const linkElement = document.createElement('a');
-                    linkElement.href = `/blog/${blog.id}`; // 假设您的博客详细页面的 URL 是 '/blog/{id}' 格式
-                    linkElement.style.textDecoration = 'none'; // 可选：移除链接的下划线样式
-
+                    const idElement = document.createElement('p');
+                    idElement.textContent = 'ID: ' + blog.id;
+                    idElement.style.cursor = 'pointer';
+                    idElement.onclick = function() { window.location.href = `/blog/${blog.id}`; };
 
                     const titleElement = document.createElement('h2');
                     titleElement.textContent = blog.title;
+                    titleElement.style.cursor = 'pointer';
+                    titleElement.onclick = function() { window.location.href = `/blog/title_${blog.title}`; };
 
                     const authorElement = document.createElement('p');
                     authorElement.textContent = 'Author: ' + blog.author;
+                    authorElement.style.cursor = 'pointer';
+                    authorElement.onclick = function() { window.location.href = `/blog/author_${blog.author}`; };
 
                     const contentElement = document.createElement('p');
                     contentElement.textContent = blog.content;
+                    contentElement.style.cursor = 'pointer';
+                    contentElement.onclick = function() { window.location.href = `/blog/${blog.id}`; };
 
-                    // 将标题、作者和内容添加到链接元素中
-                    linkElement.appendChild(titleElement);
-                    linkElement.appendChild(authorElement);
-                    linkElement.appendChild(contentElement);
+                    // Append children to blogEntry
+                    blogEntry.appendChild(idElement);
+                    blogEntry.appendChild(titleElement);
+                    blogEntry.appendChild(authorElement);
+                    blogEntry.appendChild(contentElement);
 
-                    // blogEntry.appendChild(titleElement);
-                    // blogEntry.appendChild(authorElement);
-                    // blogEntry.appendChild(contentElement);
-                    // 将链接元素添加到博客条目中
-                    blogEntry.appendChild(linkElement);
-
+                    // Append blogEntry to the container
                     blogListContainer.appendChild(blogEntry);
+
+                    // 在左侧栏创建标题链接
+                    const blogLink = document.createElement('a');
+                    blogLink.href = `/blog/${blog.id}`;
+                    blogLink.textContent = blog.title;
+                    blogLink.classList.add('blog-link');
+                    blogTitlesContainer.appendChild(blogLink);
                 });
             })
+            //     blogData.forEach(blog => {
+            //         const blogEntry = document.createElement('div');
+            //         blogEntry.classList.add('blog-entry');
+
+            //         // 创建一个链接元素
+            //         const linkElement = document.createElement('a');
+            //         linkElement.href = `/blog/${blog.id}`; // 假设您的博客详细页面的 URL 是 '/blog/{id}' 格式
+            //         linkElement.style.textDecoration = 'none'; // 可选：移除链接的下划线样式
+
+
+            //         const titleElement = document.createElement('h2');
+            //         titleElement.textContent = blog.title;
+
+            //         const authorElement = document.createElement('p');
+            //         authorElement.textContent = 'Author: ' + blog.author;
+
+            //         const contentElement = document.createElement('p');
+            //         contentElement.textContent = blog.content;
+
+            //         // 将标题、作者和内容添加到链接元素中
+            //         linkElement.appendChild(titleElement);
+            //         linkElement.appendChild(authorElement);
+            //         linkElement.appendChild(contentElement);
+
+            //         // blogEntry.appendChild(titleElement);
+            //         // blogEntry.appendChild(authorElement);
+            //         // blogEntry.appendChild(contentElement);
+            //         // 将链接元素添加到博客条目中
+            //         blogEntry.appendChild(linkElement);
+
+            //         blogListContainer.appendChild(blogEntry);
+            //     });
+            // })
             .catch(error => console.error('Error fetching data:', error));
         // 使用 fetch 或其他方式从后端获取数据
         // fetch('../api/blog/list')

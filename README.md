@@ -12,3 +12,12 @@
 
 项目启动：后端终端使用npm run dev 启动服务。
 出现默认主页地址进行访问http://127.0.0.1:3000/
+
+
+![屏幕截图 2023-11-18 123716](https://github.com/illusionscitech/web-lab3-nodejs/assets/60685266/4ca1f7bb-0056-489d-aabb-88b18fa508fa)
+
+![image](https://github.com/illusionscitech/web-lab3-nodejs/assets/60685266/dd946cc3-7b04-4f98-85cf-4c76e172ac87)
+
+![image](https://github.com/illusionscitech/web-lab3-nodejs/assets/60685266/49c481b2-e1a1-4e17-9066-b08cc16bc6b6)
+
+

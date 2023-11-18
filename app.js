@@ -87,23 +87,7 @@ const serverHandler = async (req, res) => {
     
                 res.writeHead(200, { 'Content-Type': 'text/html' });
                 res.end(data);
-                // const blogId = req.url.split('/')[2];
-                // const basePath ='/api/blog/list'
-                // const relativePath = 'author=行者'; // 相对路径
-                // newpath = `${basePath}?${relativePath}`;
-                // //解析query
-                // req.query = querystring.parse(newpath.split('?')[1]);
-                // console.log(newpath);
-                // const postData =  getPostData(req);
-                // req.body = postData;
-                // const blogData = handleBlogRoute(req, res);
-                // jsondata = JSON.stringify(blogData);
-                // console.log(jsondata);
-                // // renderBlogPage(blogId, req, res, data);
-                // // 处理博客详情页请求
-                // // const blogId = req.url.split('/')[2];
-                // res.end(data);
-                // console.log(req.url);
+                
             });
         } else{
             //设置返回的数据类型(响应格式)

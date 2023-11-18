@@ -21,11 +21,8 @@ try {
     const findQuery = sql;
 
     try {
-        // console.log("1111");
-        // console.log(findQuery);
+        
         const cursor = await collection.find(findQuery);
-        // const cursor = await collection.find("旅行日记");
-        // const cursor = await collection.find({id: 1});
         const result= await cursor.toArray();
         const jsonData = JSON.stringify(result, null, 2);
         return jsonData

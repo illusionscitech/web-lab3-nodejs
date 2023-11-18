@@ -14,12 +14,10 @@
 出现默认主页地址进行访问http://127.0.0.1:3000/
 
 
-![屏幕截图 2023-11-18 123716](https://github.com/illusionscitech/web-lab3-nodejs/assets/60685266/4ca1f7bb-0056-489d-aabb-88b18fa508fa)
-
-![image](https://github.com/illusionscitech/web-lab3-nodejs/assets/60685266/dd946cc3-7b04-4f98-85cf-4c76e172ac87)
-
-![image](https://github.com/illusionscitech/web-lab3-nodejs/assets/60685266/49c481b2-e1a1-4e17-9066-b08cc16bc6b6)
 
 
 
+![屏幕截图 2023-11-18 123716](https://github.com/illusionscitech/web-lab3-nodejs/assets/60685266/edaf4c1d-9d7c-456f-95d1-3329f4a5ae5c)
 
+![屏幕截图 2023-11-18 123856](https://github.com/illusionscitech/web-lab3-nodejs/assets/60685266/1091fe8b-30ba-4303-b9c7-4edf6e3ff85e)
+![屏幕截图 2023-11-18 123918](https://github.com/illusionscitech/web-lab3-nodejs/assets/60685266/5267cd00-9f6f-4a0f-a77d-a3d4218696eb)
